@@ -1,0 +1,62 @@
+name: Build KiCad plugin
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-15]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: dtolnay/rust-toolchain@stable
+      - if: runner.os == 'Linux'
+        uses: PyO3/maturin-action@v1
+        with:
+          command: build
+          args: --release --out wheelhouse
+          manylinux: "2_28"
+      - if: runner.os == 'Linux'
+        run: python tools/build_kicad_plugin.py --wheel $(find wheelhouse -name '*.whl' -print -quit)
+      - if: runner.os != 'Linux'
+        run: python -m pip install maturin
+      - if: runner.os != 'Linux'
+        run: python tools/build_kicad_plugin.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pcm-${{ matrix.os }}
+          path: dist/*.zip
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: pcm-*
+          merge-multiple: true
+          path: dist
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+      - run: python tools/build_pcm_repository.py --archives dist --output pcm-repository
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: pcm
+          publish_dir: pcm-repository
+          force_orphan: true

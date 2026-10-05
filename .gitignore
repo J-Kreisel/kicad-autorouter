@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+dist/
+*.egg-info/
+result
+target/
+src/kicad_autorouter/_native*.so
+*.kicad_prl
+~*.kicad_*.lck

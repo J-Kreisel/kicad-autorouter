@@ -1,0 +1,13 @@
+[package]
+name = "kicad-autorouter-native"
+version = "0.1.9"
+edition = "2024"
+license = "MIT"
+
+[lib]
+name = "_native"
+crate-type = ["cdylib"]
+path = "rust/src/lib.rs"
+
+[dependencies]
+pyo3 = { version = "0.27", features = ["abi3-py311"] }

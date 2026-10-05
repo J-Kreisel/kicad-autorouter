@@ -1,0 +1,22 @@
+{
+  "$schema": "https://go.kicad.org/api/schemas/v1",
+  "identifier": "com.github.j-kreisel.kicad-autorouter",
+  "name": "KiCad Autorouter",
+  "description": "Open the negotiated-congestion autorouter for the active PCB.",
+  "runtime": {
+    "type": "python",
+    "min_version": "3.11"
+  },
+  "actions": [
+    {
+      "identifier": "open-autorouter",
+      "name": "Open Autorouter",
+      "description": "Inspect, route, and selectively unroute the active PCB.",
+      "show-button": true,
+      "scopes": ["pcb"],
+      "entrypoint": "launch.py",
+      "icons-light": ["icons/autorouter-light-24.png", "icons/autorouter-light-48.png"],
+      "icons-dark": ["icons/autorouter-dark-24.png", "icons/autorouter-dark-48.png"]
+    }
+  ]
+}

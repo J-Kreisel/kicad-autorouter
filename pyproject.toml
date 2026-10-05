@@ -1,0 +1,35 @@
+[build-system]
+requires = ["maturin>=1.8,<2"]
+build-backend = "maturin"
+
+[project]
+name = "kicad-autorouter"
+version = "0.1.9"
+description = "A negotiated-congestion autorouter for KiCad's IPC API"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Johannes" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+kicad = ["kicad-python>=0.5"]
+gui = ["PySide6>=6.7"]
+
+[project.scripts]
+kicad-autorouter = "kicad_autorouter.cli:main"
+kicad-autorouter-gui = "kicad_autorouter.gui:main"
+
+[tool.maturin]
+python-source = "src"
+module-name = "kicad_autorouter._native"
+features = ["pyo3/extension-module"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://go.kicad.org/pcm/schemas/v2",
+  "name": "KiCad Autorouter",
+  "description": "Negotiated-congestion autorouting for 2–32 layer KiCad PCBs.",
+  "description_full": "An external-process IPC plugin for routing ordinary KiCad PCBs. It provides preflight graph and clearance-map inspection, scoped routing and unrouting, per-layer direction policies, negotiated congestion, through vias, cancellation, and explicit application as an undoable KiCad operation. Always inspect generated copper and run KiCad DRC before fabrication.",
+  "identifier": "com.github.j-kreisel.kicad-autorouter",
+  "type": "plugin",
+  "author": {
+    "name": "Johannes",
+    "contact": {
+      "web": "https://github.com/J-Kreisel/kicad-autorouter"
+    }
+  },
+  "license": "MIT",
+  "resources": {
+    "homepage": "https://github.com/J-Kreisel/kicad-autorouter",
+    "repository": "https://github.com/J-Kreisel/kicad-autorouter",
+    "issues": "https://github.com/J-Kreisel/kicad-autorouter/issues"
+  },
+  "tags": ["autorouter", "pcb", "routing"],
+  "versions": []
+}
