@@ -1,0 +1,17 @@
+{
+  "$schema": "https://go.kicad.org/pcm/schemas/v2",
+  "name": "J-Kreisel KiCad Plugins",
+  "schema_version": 2,
+  "packages": {
+    "url": "https://raw.githubusercontent.com/J-Kreisel/kicad-autorouter/pcm/packages.json",
+    "sha256": "baadbfecf4ffe7aa3a3869c50e33331b6bf415a31c7997189d5df4d7bd20743d",
+    "update_timestamp": 1791267903,
+    "update_time_utc": "2026-10-06 06:25:03"
+  },
+  "maintainer": {
+    "name": "Johannes",
+    "contact": {
+      "web": "https://github.com/J-Kreisel"
+    }
+  }
+}
